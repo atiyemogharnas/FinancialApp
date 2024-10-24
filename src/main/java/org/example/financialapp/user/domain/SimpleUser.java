@@ -5,7 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.example.financialapp.service.domain.ServiceUsage;
+import org.example.financialapp.serviceManager.domain.*;
 
 import java.util.Set;
 
@@ -15,6 +15,7 @@ import java.util.Set;
 public class SimpleUser extends User {
 
     private Double credit;
+
     @OneToMany(mappedBy = "user")
     private Set<ServiceUsage> serviceUsages;
 }
