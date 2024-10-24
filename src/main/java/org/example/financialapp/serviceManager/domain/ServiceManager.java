@@ -1,4 +1,4 @@
-package org.example.financialapp.service.domain;
+package org.example.financialapp.serviceManager.domain;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -11,7 +11,7 @@ import java.util.Set;
 @Entity
 @Table(name = "services")
 @Data
-public class Service {
+public class ServiceManager {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +26,7 @@ public class Service {
     @Column(nullable = false)
     private Integer maxUsage;
 
-    private boolean isActive;
+    private Boolean isActive;
 
     @ManyToOne
     @JoinColumn(name = "admin_id", nullable = false)
@@ -39,4 +39,5 @@ public class Service {
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     private Set<SimpleUser> allowedUsers = new HashSet<>();
+
 }

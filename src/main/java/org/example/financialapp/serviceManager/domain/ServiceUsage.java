@@ -1,4 +1,4 @@
-package org.example.financialapp.service.domain;
+package org.example.financialapp.serviceManager.domain;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -19,7 +19,7 @@ public class ServiceUsage {
 
     @ManyToOne
     @JoinColumn(name = "service_id", nullable = false)
-    private Service service;
+    private ServiceManager serviceManager;
 
     private int usageCount;
 }
