@@ -29,7 +29,7 @@ public class UserService {
 
         existingUser.setUsername(updatedUser.getUsername() == null ? existingUser.getUsername() : updatedUser.getUsername());
         existingUser.setPassword(updatedUser.getPassword() == null ? existingUser.getPassword() : updatedUser.getPassword());
-        if (existingUser.getUserType() != updatedUser.getUserType()) {
+        if (updatedUser.getUserType() != null && existingUser.getUserType() != updatedUser.getUserType()) {
             throw new RuntimeException("you not allow to change userType");
         }
         return userRepository.save(existingUser);
