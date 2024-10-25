@@ -18,6 +18,5 @@ public class SimpleUser extends User {
     private Double credit;
 
     @OneToMany(mappedBy = "user")
-    @JoinColumn(name = "user_id", nullable = false)
     private Set<ServiceUsage> serviceUsages;
 }

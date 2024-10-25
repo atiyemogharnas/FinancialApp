@@ -22,15 +22,20 @@ public class UserController {
         try {
             User createdUser = userService.createUser(user);
             return ResponseEntity.ok(createdUser);
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             return ResponseEntity.badRequest().body(ex.getMessage());
         }
     }
 
     @PutMapping("/update/{userId}")
-    public ResponseEntity<User> updateUser(@PathVariable Long userId, @RequestBody User updatedUser) {
-        User user = userService.updateUser(userId, updatedUser);
-        return ResponseEntity.ok(user);
+    public ResponseEntity<Object> updateUser(@PathVariable Long userId, @RequestBody User updatedUser) {
+        try {
+            User user = userService.updateUser(userId, updatedUser);
+            return ResponseEntity.ok(user);
+        } catch (Exception ex) {
+            return ResponseEntity.badRequest().body(ex.getMessage());
+        }
+
     }
 
     @DeleteMapping("/delete/{userId}")
@@ -52,9 +57,13 @@ public class UserController {
     }
 
     @PutMapping("/credit/{userId}")
-    public ResponseEntity<SimpleUser> updateCredit(@PathVariable Long userId, @RequestParam Double additionalCredit) {
-        SimpleUser simpleUser = userService.updateCredit(userId, additionalCredit);
-        return ResponseEntity.ok(simpleUser);
+    public ResponseEntity<Object> updateCredit(@PathVariable Long userId, @RequestParam Double additionalCredit) {
+        try {
+            SimpleUser simpleUser = userService.updateCredit(userId, additionalCredit);
+            return ResponseEntity.ok(simpleUser);
+        } catch (Exception ex) {
+            return ResponseEntity.badRequest().body(ex.getMessage());
+        }
     }
 
     @GetMapping("/simple")
@@ -63,4 +72,3 @@ public class UserController {
         return ResponseEntity.ok(simpleUsers);
     }
 }
-
