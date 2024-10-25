@@ -32,12 +32,12 @@ public class ServiceManager {
     @JoinColumn(name = "admin_id", nullable = false)
     private User admin;
 
-    @ManyToMany
-    @JoinTable(
-            name = "service_permission",
-            joinColumns = @JoinColumn(name = "service_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
-    )
-    private Set<SimpleUser> allowedUsers = new HashSet<>();
+//    @ManyToMany
+//    @JoinTable(
+//            name = "service_permission",
+//            joinColumns = @JoinColumn(name = "service_id"),
+//            inverseJoinColumns = @JoinColumn(name = "user_id")
+//    )
+//    private Set<SimpleUser> allowedUsers = new HashSet<>();
 
 }
