@@ -2,6 +2,7 @@ package org.example.financialapp.user.domain;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -17,5 +18,6 @@ public class SimpleUser extends User {
     private Double credit;
 
     @OneToMany(mappedBy = "user")
+    @JoinColumn(name = "user_id", nullable = false)
     private Set<ServiceUsage> serviceUsages;
 }

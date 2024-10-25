@@ -29,8 +29,9 @@ public class UserService {
 
         existingUser.setUsername(updatedUser.getUsername() == null ? existingUser.getUsername() : updatedUser.getUsername());
         existingUser.setPassword(updatedUser.getPassword() == null ? existingUser.getPassword() : updatedUser.getPassword());
-        existingUser.setUserType(updatedUser.getUserType() == null ? existingUser.getUserType() : updatedUser.getUserType());
-
+        if (existingUser.getUserType() != updatedUser.getUserType()) {
+            throw new RuntimeException("you not allow to change userType");
+        }
         return userRepository.save(existingUser);
     }
 
@@ -49,6 +50,9 @@ public class UserService {
     public SimpleUser updateCredit(Long userId, Double additionalCredit) {
         SimpleUser simpleUser = simpleUserRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("SimpleUser not found with ID: " + userId));
+        if (additionalCredit < 0) {
+            throw new RuntimeException("credit can not be negative");
+        }
 
         double newCredit = simpleUser.getCredit() + additionalCredit;
         simpleUser.setCredit(newCredit);
